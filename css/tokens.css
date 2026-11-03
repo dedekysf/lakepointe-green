@@ -1,0 +1,27 @@
+/* Design tokens — single source of truth. js/tailwind-config.js only maps these to Tailwind utilities.
+   Change a value here, never in a page. Colours are RGB triplets so opacity utilities (bg-ink/10) work. */
+:root {
+  /* Brand */
+  --color-lovett: 0 28 55;          /* #001C37 navy: primary buttons, logo, footer */
+  --color-lovett-blue: 0 101 160;   /* #0065A0 hover / focus ring */
+  --color-charcoal: 10 36 64;       /* #0A2440 secondary buttons, active chips */
+  --color-charcoal-deep: 0 28 55;   /* footer background (same as lovett) */
+  --color-copper: 134 102 57;       /* #866639 accent, eyebrows */
+  --color-copper-lt: 212 185 140;   /* #D4B98C accent on dark backgrounds */
+  /* Neutrals */
+  --color-ink: 19 32 45;            /* #13202D body text, headings */
+  --color-muted: 90 100 112;        /* #5A6470 secondary text */
+  --color-stone: 251 250 246;       /* #FBFAF6 page / header background */
+  --color-cream: 245 241 232;       /* #F5F1E8 alternate section background */
+  --color-line: 226 221 211;        /* #E2DDD3 hairlines, borders */
+
+  /* Fonts (the @font-face + family variables are in fonts.css) */
+  --ls-eyebrow: 0.18em;             /* eyebrows, small caps labels */
+  --ls-label: 0.14em;
+
+  /* Layout */
+  --container-max: 1280px;
+  --container-pad: 1rem;            /* < 640px */
+  --container-pad-sm: 2rem;         /* >= 640px */
+  --container-pad-lg: 72px;         /* >= 1024px */
+}
