@@ -34,11 +34,12 @@ robots.txt  sitemap.xml
 2. Internal links are root-absolute with a trailing slash (`/contact/`, `/find-your-home/#site-plan`). No `#/...` links.
 3. Header, footer and the mobile CTA bar are inline in every page (the contact page omits the mobile bar). When you change nav/footer,
    change it in every `index.html` + `404.html`: `grep -rl "Schedule a tour" --include=*.html .`.
-4. Scripts sit at the bottom of `<body>` in this order: `site-config, utils, gallery-data, nav, hero-carousel, lightbox, saved-and-share, tabs, gallery, forms`.
+4. Scripts sit at the bottom of `<body>` in this order: `site-config, utils, gallery-data, nav, hero-carousel, lightbox, saved-and-share, tabs, gallery, forms`, then the Lenis CDN, `smooth-scroll`, `scroll-reveal`.
    They share the `window.LPG` namespace; each one is a no-op on pages without its markup.
 5. Tailwind runs from the CDN with the theme in `js/tailwind-config.js`; every value there points at `css/tokens.css`. Change a colour in tokens.css, not in a page.
    Palette: lovett, lovett-blue, charcoal(-deep), copper(-lt), ink, muted, stone, cream, line. Fonts: `font-sans` (DM Sans), `font-serif` (Playfair). Tracking: `tracking-eyebrow`, `tracking-label`.
    Repeated patterns go in `css/components.css`.
+6. Side padding follows Intown: header and sections use `.container-site` = `padding-inline: 5vw` (`--page-pad`) at every width, no max width. The footer uses `px-6 lg:px-12` with its content in `mx-auto max-w-6xl`. Don't add per-breakpoint `px-*` to sections; change `--page-pad`.
 
 ## 3. SEO checklist for every new or edited page (`<head>`)
 
@@ -51,6 +52,10 @@ robots.txt  sitemap.xml
 - Domain `https://www.lakepointegreen.net` is assumed; find/replace it if production differs.
 
 ## 4. Behaviour notes
+
+- Smooth scroll: Lenis (CDN) in `js/smooth-scroll.js`, same settings as Intown. Use `LPG.scrollToEl(el)` for programmatic scrolling (header offset 72px, falls back to a plain jump for reduced motion).
+- Section reveal: `js/scroll-reveal.js` fades/raises each section's blocks in as it enters the viewport (text rises, photos fade, grids stagger). Opt out with `data-reveal-skip`; force targets with `data-reveal` (+ `data-reveal-delay`). Hero carousels are skipped. Distance/duration/stagger are tokens in `css/tokens.css`.
+- Footer social icons: 18px brand glyphs in `h-size-sm w-size-sm` circles (Intown style); they are disabled with a "Coming soon." tooltip (`.soon`) until real profile URLs exist.
 
 - Forms (tour request / information request) validate client-side, then open the visitor's email app (`mailto:` to `LPG.SALES_EMAIL`
   in `js/site-config.js`). There is no backend yet — replace the `location.href = "mailto:..."` line in `js/forms.js` when there is one.

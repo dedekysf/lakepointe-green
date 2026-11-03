@@ -12,10 +12,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   box-shadow: 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color, #fff), 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 }
 
-/* Page container: 16px / 32px / 72px side padding. Pair with 2xl:max-w-[1440px] for the header. */
-.container-site { width: 100%; max-width: var(--container-max); margin-left: auto; margin-right: auto; padding-left: var(--container-pad); padding-right: var(--container-pad); }
-@media (min-width: 640px) { .container-site { padding-left: var(--container-pad-sm); padding-right: var(--container-pad-sm); } }
-@media (min-width: 1024px) { .container-site { padding-left: var(--container-pad-lg); padding-right: var(--container-pad-lg); } }
+/* Page container: fluid side padding (--page-pad = 5vw) at every breakpoint, like Intown. Full width; cap a block with max-w-* + the auto margins. */
+.container-site { width: 100%; margin-left: auto; margin-right: auto; padding-left: var(--page-pad); padding-right: var(--page-pad); }
 
 /* Small caps label with a leading rule */
 .eyebrow { display: inline-flex; align-items: center; gap: 1rem; font-size: 11px; font-weight: 500; letter-spacing: var(--ls-eyebrow); }
@@ -44,3 +42,26 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 @keyframes lpgFadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
 .hero-fade { animation: lpgFadeUp .8s ease-out .3s both; }
 @media (prefers-reduced-motion: reduce) { .hero-fade { animation: none; } }
+
+/* Photo frame: a thin copper outline offset behind the image */
+.framed { position: relative; }
+.framed::before { content: ""; pointer-events: none; position: absolute; inset: 24px -24px -24px 24px; border: 1px solid rgb(var(--color-copper) / .45); }
+@media (max-width: 767px) { .framed::before { inset: 12px -12px -12px 12px; } }
+
+/* Big serif number on the "pillars" cards (data-n) */
+.pillar-num::before { content: attr(data-n); }
+
+/* "Coming soon." tooltip on the disabled social buttons in the footer */
+.soon-tip { display: none; position: absolute; bottom: calc(100% + 8px); left: 50%; translate: -50% 0; z-index: 30; padding: 6px 10px; border-radius: 2px; background: rgb(var(--color-ink)); color: #fff; font-size: 12px; font-weight: 500; letter-spacing: 0; white-space: nowrap; pointer-events: none; }
+.soon:hover .soon-tip, .soon:focus-within .soon-tip { display: block; }
+
+/* SMOOTH SCROLL (Lenis, js/smooth-scroll.js) — rules from lenis.css */
+html.lenis, html.lenis body { height: auto; }
+.lenis:not(.lenis-autoToggle).lenis-stopped { overflow: clip; }
+.lenis [data-lenis-prevent], .lenis [data-lenis-prevent-wheel], .lenis [data-lenis-prevent-touch] { overscroll-behavior: contain; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
+/* SECTION REVEAL (js/scroll-reveal.js) — items fade in and rise as their section enters the viewport. */
+.reveal-hidden { opacity: 0; translate: 0 var(--reveal-distance); }
+.reveal-hidden.reveal-fade-only { translate: none; }   /* images: fade only, no rise */
+.reveal-anim { transition: opacity var(--reveal-duration) ease-out, translate var(--reveal-duration) ease-out !important; }

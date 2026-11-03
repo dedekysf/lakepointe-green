@@ -43,7 +43,7 @@
     const a = e.target.closest("a[href='#contact']");
     if (a) {
       const el = document.getElementById("contact");
-      if (el) { e.preventDefault(); el.scrollIntoView(); el.querySelector("input")?.focus({ preventScroll: true }); }
+      if (el) { e.preventDefault(); LPG.scrollToEl(el); el.querySelector("input")?.focus({ preventScroll: true }); }
     }
   });
   LPG.closeMenus();

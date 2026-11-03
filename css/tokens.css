@@ -19,9 +19,19 @@
   --ls-eyebrow: 0.18em;             /* eyebrows, small caps labels */
   --ls-label: 0.14em;
 
-  /* Layout */
-  --container-max: 1280px;
-  --container-pad: 1rem;            /* < 640px */
-  --container-pad-sm: 2rem;         /* >= 640px */
-  --container-pad-lg: 72px;         /* >= 1024px */
+  /* Layout — same as Intown: header and sections pad 5vw on each side at every width (fluid, no max width);
+     the footer pads px-6 / lg:px-12 and centres its content in max-w-6xl (Tailwind utilities in the markup). */
+  --page-pad: 5vw;
+
+  /* Component sizes (same scale as Intown): h-size-sm w-size-sm for icon buttons and avatars */
+  --size-xs: 24px;
+  --size-sm: 32px;
+  --size-md: 40px;
+  --size-lg: 48px;
+  --size-xl: 56px;
+
+  /* Motion: section reveal (js/scroll-reveal.js), same values as Intown */
+  --reveal-distance: 40px;
+  --reveal-duration: 0.6s;
+  --reveal-stagger: 100;   /* ms between items of the same section */
 }

@@ -23,6 +23,9 @@ tailwind.config = {
         sans: ['var(--font-dm-sans)', 'system-ui', 'sans-serif'],
         serif: ['var(--font-playfair)', 'Georgia', 'serif'],
       },
+      // h-size-sm w-size-sm ... (32px icon buttons)
+      height: { 'size-xs': 'var(--size-xs)', 'size-sm': 'var(--size-sm)', 'size-md': 'var(--size-md)', 'size-lg': 'var(--size-lg)', 'size-xl': 'var(--size-xl)' },
+      width: { 'size-xs': 'var(--size-xs)', 'size-sm': 'var(--size-sm)', 'size-md': 'var(--size-md)', 'size-lg': 'var(--size-lg)', 'size-xl': 'var(--size-xl)' },
       // tracking-eyebrow (eyebrows) · tracking-label (small labels)
       letterSpacing: {
         eyebrow: 'var(--ls-eyebrow)',
