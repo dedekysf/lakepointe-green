@@ -32,9 +32,9 @@ robots.txt  sitemap.xml
 1. One page = one folder with an `index.html`. `<body data-route="/route">` and one `<div id="page-{slug}" class="lpg-page" data-overlay="true|false">`.
    `data-overlay="true"` = transparent header over the hero until the visitor scrolls (home, find-your-home).
 2. Internal links are root-absolute with a trailing slash (`/contact/`, `/find-your-home/#site-plan`). No `#/...` links.
-3. Header, footer and the mobile CTA bar are inline in every page (the contact page omits the mobile bar). When you change nav/footer,
+3. Header and footer are inline in every page (no sticky mobile CTA bar). When you change nav/footer,
    change it in every `index.html` + `404.html`: `grep -rl "Schedule a tour" --include=*.html .`.
-4. Scripts sit at the bottom of `<body>` in this order: `site-config, utils, gallery-data, nav, hero-carousel, lightbox, saved-and-share, tabs, gallery, forms`, then the Lenis CDN, `smooth-scroll`, `scroll-reveal`.
+4. Scripts sit at the bottom of `<body>` in this order: `site-config, utils, gallery-data, nav, mobile-menu, hero-carousel, lightbox, saved-and-share, tabs, gallery, forms`, then the Lenis CDN, `smooth-scroll`, `scroll-reveal`.
    They share the `window.LPG` namespace; each one is a no-op on pages without its markup.
 5. Tailwind runs from the CDN with the theme in `js/tailwind-config.js`; every value there points at `css/tokens.css`. Change a colour in tokens.css, not in a page.
    Palette: lovett, lovett-blue, charcoal(-deep), copper(-lt), ink, muted, stone, cream, line. Fonts: `font-sans` (DM Sans), `font-serif` (Playfair). Tracking: `tracking-eyebrow`, `tracking-label`.
@@ -52,6 +52,8 @@ robots.txt  sitemap.xml
 - Domain `https://www.lakepointegreen.net` is assumed; find/replace it if production differs.
 
 ## 4. Behaviour notes
+
+- Menu: below 768px the burger opens a full-screen overlay (`js/mobile-menu.js`, built from the header's `#mobile-nav` links, styles `.lpg-menu*` in components.css); 768–1279px it opens the `#mobile-nav` dropdown (Schedule a Tour + Call side by side, 50/50); from 1280px the desktop nav shows.
 
 - Smooth scroll: Lenis (CDN) in `js/smooth-scroll.js`, same settings as Intown. Use `LPG.scrollToEl(el)` for programmatic scrolling (header offset 72px, falls back to a plain jump for reduced motion).
 - Section reveal: `js/scroll-reveal.js` fades/raises each section's blocks in as it enters the viewport (text rises, photos fade, grids stagger). Opt out with `data-reveal-skip`; force targets with `data-reveal` (+ `data-reveal-delay`). Hero carousels are skipped. Distance/duration/stagger are tokens in `css/tokens.css`.

@@ -33,6 +33,8 @@
   document.addEventListener("click", (e) => {
     const b = e.target.closest("button[aria-controls='mobile-nav']");
     if (b) {
+      // phones get the full-screen menu (js/mobile-menu.js); wider screens keep the dropdown
+      if (LPG.isPhone && LPG.isPhone()) { LPG.openMobileMenu(b); return; }
       const nav = b.closest("header").querySelector("#mobile-nav");
       const open = nav.classList.contains("hidden");
       swap(nav, open, ["block"], ["hidden"]);

@@ -15,6 +15,11 @@
   --color-cream: 245 241 232;       /* #F5F1E8 alternate section background */
   --color-line: 226 221 211;        /* #E2DDD3 hairlines, borders */
 
+  /* Hero photo scrim (the dark layer over the carousel photos): RGB + strength. Phones get a darker one. */
+  --color-scrim: 2 14 28;
+  --hero-scrim: 0.15;
+  --hero-scrim-phone: 0.45;
+
   /* Fonts (the @font-face + family variables are in fonts.css) */
   --ls-eyebrow: 0.18em;             /* eyebrows, small caps labels */
   --ls-label: 0.14em;
@@ -22,6 +27,7 @@
   /* Layout — same as Intown: header and sections pad 5vw on each side at every width (fluid, no max width);
      the footer pads px-6 / lg:px-12 and centres its content in max-w-6xl (Tailwind utilities in the markup). */
   --page-pad: 5vw;
+  --footer-pad-xl: 3rem;   /* footer side padding from 1280px (Intown: lg:px-12) */
 
   /* Component sizes (same scale as Intown): h-size-sm w-size-sm for icon buttons and avatars */
   --size-xs: 24px;

@@ -65,3 +65,30 @@ html.lenis, html.lenis body { height: auto; }
 .reveal-hidden { opacity: 0; translate: 0 var(--reveal-distance); }
 .reveal-hidden.reveal-fade-only { translate: none; }   /* images: fade only, no rise */
 .reveal-anim { transition: opacity var(--reveal-duration) ease-out, translate var(--reveal-duration) ease-out !important; }
+
+/* MOBILE MENU (phones, js/mobile-menu.js) — full-screen overlay like Intown's. Bar height, logo height and close-button box are copied from the visible header by the script, so nothing moves when it opens. */
+.lpg-menu { position: fixed; inset: 0; z-index: 600; display: flex; flex-direction: column; overflow-y: auto; padding: 0 var(--page-pad); background: rgb(var(--color-lovett)); color: #fff; }
+.lpg-menu__bar { display: flex; flex: none; align-items: center; justify-content: space-between; height: var(--menu-bar-h, 72px); margin-bottom: 24px; }
+.lpg-menu__logo { display: block; color: #fff; }
+.lpg-menu__logo svg { display: block; width: auto; height: var(--menu-logo-h, 34px); }
+.lpg-menu__close { display: inline-flex; align-items: center; justify-content: center; width: var(--menu-btn-w, var(--size-md)); height: var(--menu-btn-h, var(--size-md)); border: 0; background: transparent; color: #fff; cursor: pointer; }
+.lpg-menu__link { display: block; padding: 16px 0; border-bottom: 1px solid rgb(255 255 255 / .12); font-family: var(--font-playfair), Georgia, serif; font-size: 28px; line-height: 1.2; color: #fff; text-decoration: none; }
+.lpg-menu__link[aria-current="page"] { color: rgb(var(--color-copper-lt)); }
+/* CTA pinned to the bottom while the links scroll; equal 24px above and below the buttons */
+.lpg-menu__cta { position: sticky; bottom: 0; display: flex; flex-direction: column; gap: 12px; margin: auto calc(var(--page-pad) * -1) 0; padding: 24px var(--page-pad) calc(24px + env(safe-area-inset-bottom, 0px)); background: rgb(var(--color-lovett)); }
+.lpg-menu__btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; border: 1px solid #fff; border-radius: 2px; font-size: 12px; font-weight: 500; letter-spacing: var(--ls-eyebrow); text-decoration: none; }
+.lpg-menu__btn--filled { background: #fff; color: rgb(var(--color-lovett)); }
+.lpg-menu__btn--outline { color: #fff; font-size: 14px; letter-spacing: .04em; }
+.lpg-menu__logo g:last-child { fill: rgb(var(--color-copper-lt)); } /* the "GREEN" line, same as the footer logo */
+.lpg-menu__btn svg { color: rgb(var(--color-copper-lt)); }
+
+/* HERO SCRIM — flat dark layer over the hero photos; darker on phones so the headline reads. (lg: adds a radial gradient on top.) */
+.hero-scrim { background-color: rgb(var(--color-scrim) / var(--hero-scrim)); }
+@media (max-width: 767px) { .hero-scrim { background-color: rgb(var(--color-scrim) / var(--hero-scrim-phone)); } }
+
+/* FOOTER (same as Intown): side gutter = the other sections (5vw) below 1280, 48px from 1280; content centred in max-w-6xl */
+.footer-pad { padding-left: var(--page-pad); padding-right: var(--page-pad); }
+@media (min-width: 1280px) { .footer-pad { padding-left: var(--footer-pad-xl); padding-right: var(--footer-pad-xl); } }
+.footer-link { position: relative; }
+.footer-link::after { content: ''; position: absolute; left: 0; bottom: -3px; width: 0; height: 1px; background: currentColor; transition: width 250ms ease; }
+.footer-link:hover::after { width: 100%; }
