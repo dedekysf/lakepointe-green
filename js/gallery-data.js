@@ -67,8 +67,8 @@ LPG.GALLERY = [
     "category": "Interior"
   },
   {
-    "path": "/images/photos/gallery-streetscape-oak.webp",
-    "alt": "Arched entry and a mature oak along a walkway between homes",
+    "path": "/images/photos/gallery-lovett-streetscape.webp",
+    "alt": "Brick and stucco homes along a landscaped street in a Lovett Homes community",
     "category": "Exterior"
   },
   {
