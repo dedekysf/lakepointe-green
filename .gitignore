@@ -2,3 +2,6 @@
 
 .vercel
 .env*
+
+# Local source photos from Lovett: never commit
+images/Lovett Assets/

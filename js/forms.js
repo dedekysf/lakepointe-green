@@ -33,6 +33,6 @@
     const isTour = !!form.closest("#panel-tour");
     const subject = "Lake Pointe Green — " + (isTour ? "Tour request" : "Information request");
     location.href = "mailto:" + SALES_EMAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(lines.join("\n"));
-    form.innerHTML = '<div role="status" style="padding:24px 0;text-align:center"><p class="font-serif" style="font-size:26px;line-height:1.3">Your email is ready to send.</p><p style="margin-top:12px;font-size:15px;color:#5A6470">Your email app should open with your request filled in — just press send. If it doesn\'t, call Greg Burton at 713-503-4582.</p></div>';
+    form.innerHTML = '<div role="status" style="padding:24px 0;text-align:center"><p class="font-serif" style="font-size:26px;line-height:1.3">Your email is ready to send.</p><p style="margin-top:12px;font-size:15px;color:#5A6470">Your email app should open with your request filled in — just press send. If it doesn\'t, call Greg Burton at 713-503-4582.</p><p style="margin-top:16px;font-size:15px;font-style:italic;color:#5A6470">— The Lovett Homes team at Lake Pointe Green</p></div>';
   }));
 })();
