@@ -18,15 +18,27 @@
     $$(document, 'button[aria-controls="mobile-nav"]').forEach((b) => b.setAttribute("aria-expanded", "false"));
   };
 
-  // Overlay pages show the transparent header over the hero until the visitor scrolls
-  function onScroll() {
-    const s = page.dataset.overlay !== "true" || scrollY > 24;
-    solid.style.display = s ? "" : "none";
-    const oh = page.querySelector("header");
-    if (oh) oh.style.display = s ? "none" : "";
+  // Home and Find Your Home: the header over the hero is the only header. Scrolling past 24px adds .is-solid and CSS
+  // transitions it into the solid sticky bar (same height, see .lpg-hdr in components.css). Other pages use #lpg-solid-header.
+  const heroHdr = page.dataset.overlay === "true" ? page.querySelector("header.lpg-hdr") : null;
+  if (heroHdr) {
+    solid.hidden = true;
+    heroHdr.querySelectorAll("nav a[href^='/']").forEach((a) => {
+      const on = a.getAttribute("href").split("#")[0] === path;
+      if (on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+    });
+    let solidNow = null;
+    const onScroll = () => {
+      const s = scrollY > 24;
+      if (s === solidNow) return;
+      solidNow = s;
+      heroHdr.classList.toggle("is-solid", s);
+    };
+    addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    // transitions only after the first paint, so a page reloaded mid-scroll does not animate on load
+    requestAnimationFrame(() => requestAnimationFrame(() => heroHdr.classList.add("lpg-hdr-ready")));
   }
-  addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
 
   addEventListener("keydown", (e) => { if (e.key === "Escape") LPG.closeMenus(); });
 

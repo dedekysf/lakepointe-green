@@ -92,3 +92,31 @@ html.lenis, html.lenis body { height: auto; }
 .footer-link { position: relative; }
 .footer-link::after { content: ''; position: absolute; left: 0; bottom: -3px; width: 0; height: 1px; background: currentColor; transition: width 250ms ease; }
 .footer-link:hover::after { width: 100%; }
+
+/* HEADER (Home, Find Your Home): one header that turns from transparent over the hero into the solid sticky bar
+   when the visitor scrolls (js/nav.js adds .is-solid). Same 72px height in both states, only colours change. */
+.lpg-hdr { border-bottom: 1px solid transparent; transition: background-color var(--header-duration) var(--header-ease), border-color var(--header-duration) var(--header-ease), backdrop-filter var(--header-duration) var(--header-ease); }
+.lpg-hdr svg[role="img"] g, .lpg-hdr [data-endorse], .lpg-hdr [data-endorse] span, .lpg-hdr nav[aria-label="Primary"] a, .lpg-hdr a[href^="tel:"], .lpg-hdr a[href^="tel:"] svg, .lpg-hdr [data-hdr-cta], .lpg-hdr button[aria-controls="mobile-nav"] {
+  transition: color var(--header-duration) var(--header-ease), fill var(--header-duration) var(--header-ease), border-color var(--header-duration) var(--header-ease), background-color var(--header-duration) var(--header-ease);
+}
+.lpg-hdr [data-endorse] img { transition: filter var(--header-duration) var(--header-ease); }
+.lpg-hdr.is-solid { background-color: rgb(var(--color-stone) / 0.95); border-bottom-color: rgb(var(--color-ink) / 0.1); backdrop-filter: blur(12px); }
+.lpg-hdr.is-solid svg[role="img"] g { fill: rgb(var(--color-lovett)); }
+.lpg-hdr.is-solid [data-endorse] { border-color: rgb(var(--color-ink) / 0.15); }
+.lpg-hdr.is-solid [data-endorse] span { color: rgb(var(--color-muted)); }
+.lpg-hdr.is-solid [data-endorse] img { filter: none; }
+.lpg-hdr.is-solid nav[aria-label="Primary"] a { color: rgb(var(--color-ink) / 0.7); }
+.lpg-hdr.is-solid nav[aria-label="Primary"] a:hover, .lpg-hdr.is-solid nav[aria-label="Primary"] a[aria-current="page"] { color: rgb(var(--color-ink)); }
+.lpg-hdr.is-solid nav[aria-label="Primary"] a::after { background-color: rgb(var(--color-copper)); }
+.lpg-hdr.is-solid a[href^="tel:"] { color: rgb(var(--color-ink)); }
+.lpg-hdr.is-solid a[href^="tel:"] svg { color: rgb(var(--color-copper)); }
+.lpg-hdr.is-solid [data-hdr-cta] { border-color: rgb(var(--color-lovett)); background-color: rgb(var(--color-lovett)); }
+.lpg-hdr.is-solid [data-hdr-cta]:hover { border-color: rgb(var(--color-lovett-blue)); background-color: rgb(var(--color-lovett-blue)); }
+.lpg-hdr.is-solid button[aria-controls="mobile-nav"] { color: rgb(var(--color-ink)); }
+@media (prefers-reduced-motion: reduce) { .lpg-hdr, .lpg-hdr * { transition: none !important; } }
+
+/* Tab rows (Find Your Home): swipe sideways on small screens, but never draw a scrollbar. The active tab's -1px bottom
+   margin used to make the row 1px taller than its box, which showed a stray vertical scrollbar on Windows. */
+.lpg-tabs-scroll { overflow-x: auto; overflow-y: hidden; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.lpg-tabs-scroll::-webkit-scrollbar { display: none; }
+.lpg-hdr:not(.lpg-hdr-ready), .lpg-hdr:not(.lpg-hdr-ready) * { transition: none !important; }

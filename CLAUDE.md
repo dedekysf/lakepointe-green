@@ -13,7 +13,6 @@ the source; the pages below were split out of it and are now edited directly.
 index.html                       /                      (home)
 find-your-home/index.html        /find-your-home/       (floor plans, site plan, gallery, overview, location, FAQ, broker, contact)
 our-difference/index.html        /our-difference/
-resident-resources/index.html    /resident-resources/
 contact/index.html               /contact/              (tour / info tabs)
 privacy/index.html               /privacy/              (placeholder text from Lovett Homes legal still needed)
 404.html

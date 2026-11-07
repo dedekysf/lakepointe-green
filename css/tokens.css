@@ -40,4 +40,7 @@
   --reveal-distance: 40px;
   --reveal-duration: 0.6s;
   --reveal-stagger: 100;   /* ms between items of the same section */
+  /* Header swap: transparent header over the hero <-> solid sticky header */
+  --header-duration: 0.35s;
+  --header-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
