@@ -32,9 +32,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .lot { cursor: pointer; outline: none; }
 .lot:hover rect, .lot:focus-visible rect { stroke: rgb(var(--color-charcoal)); stroke-width: 3px; }
 .lot:focus-visible rect { stroke: #1e6a7a; stroke-width: 4px; }
-.site-hotspot { transition: fill .2s; animation: 2.4s ease-in-out infinite site-hotspot-pulse; }
-@keyframes site-hotspot-pulse { 50% { stroke-opacity: .45; } }
-:is(figure:has([data-tab-target]:hover) .site-hotspot, figure:has([data-tab-target]:focus-visible) .site-hotspot) { fill: #e0242a47; }
+.site-hotspot { fill: rgb(var(--color-lovett-blue) / .4); stroke: none; transition: fill .2s; animation: 2.4s ease-in-out infinite site-hotspot-pulse; }
+@keyframes site-hotspot-pulse { 50% { fill-opacity: .65; } }
+:is(figure:has([data-tab-target]:hover) .site-hotspot, figure:has([data-tab-target]:focus-visible) .site-hotspot) { fill: rgb(var(--color-lovett-blue) / .6); }
 @media (prefers-reduced-motion: reduce) { .site-hotspot { animation: none; } }
 
 /* Page shell / hero entrance */
@@ -76,6 +76,9 @@ html.lenis, html.lenis body { height: auto; }
 .lpg-menu__close { display: inline-flex; align-items: center; justify-content: center; width: var(--menu-btn-w, var(--size-md)); height: var(--menu-btn-h, var(--size-md)); border: 0; background: transparent; color: #fff; cursor: pointer; }
 .lpg-menu__link { display: block; padding: 16px 0; border-bottom: 1px solid rgb(255 255 255 / .12); font-family: var(--font-playfair), Georgia, serif; font-size: 28px; line-height: 1.2; color: #fff; text-decoration: none; }
 .lpg-menu__link[aria-current="page"] { color: rgb(var(--color-copper-lt)); }
+/* narrow phones: smaller links so "THE LOVETT DIFFERENCE" stays on one line (sizes on the 4px scale) */
+@media (max-width: 399px) { .lpg-menu__link { font-size: 24px; line-height: 32px; } }
+@media (max-width: 349px) { .lpg-menu__link { font-size: 20px; line-height: 28px; } }
 /* CTA pinned to the bottom while the links scroll; equal 24px above and below the buttons */
 .lpg-menu__cta { position: sticky; bottom: 0; display: flex; flex-direction: column; gap: 12px; margin: auto calc(var(--page-pad) * -1) 0; padding: 24px var(--page-pad) calc(24px + env(safe-area-inset-bottom, 0px)); background: rgb(var(--color-lovett)); }
 .lpg-menu__btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; border: 1px solid #fff; border-radius: 2px; font-size: 12px; font-weight: 500; letter-spacing: var(--ls-eyebrow); text-decoration: none; }
