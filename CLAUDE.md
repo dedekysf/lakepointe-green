@@ -33,7 +33,7 @@ robots.txt  sitemap.xml
 2. Internal links are root-absolute with a trailing slash (`/contact/`, `/find-your-home/#site-plan`). No `#/...` links.
 3. Header and footer are inline in every page (no sticky mobile CTA bar). When you change nav/footer,
    change it in every `index.html` + `404.html`: `grep -rl "Schedule a tour" --include=*.html .`.
-4. Scripts sit at the bottom of `<body>` in this order: `site-config, utils, gallery-data, nav, mobile-menu, hero-carousel, lightbox, saved-and-share, tabs, gallery, forms`, then the Lenis CDN, `smooth-scroll`, `scroll-reveal`.
+4. Scripts sit at the bottom of `<body>` in this order: `site-config, utils, gallery-data, nav, mobile-menu, hero-carousel, lightbox, saved-and-share, tabs, gallery, map-places, forms`, then the Lenis CDN, `smooth-scroll`, `scroll-reveal`.
    They share the `window.LPG` namespace; each one is a no-op on pages without its markup.
 5. Tailwind runs from the CDN with the theme in `js/tailwind-config.js`; every value there points at `css/tokens.css`. Change a colour in tokens.css, not in a page.
    Palette: lovett, lovett-blue, charcoal(-deep), copper(-lt), ink, muted, stone, cream, line. Fonts: `font-sans` (DM Sans), `font-serif` (Playfair). Tracking: `tracking-eyebrow`, `tracking-label`.

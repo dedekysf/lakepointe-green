@@ -15,6 +15,7 @@
   });
 
   function selectTab(tab) {
+    document.documentElement.classList.add("lpg-tab-used"); // enables the panel fade (see components.css)
     const list = tab.closest('[role="tablist"]');
     $$(list, '[role="tab"]').forEach((t) => {
       const on = t === tab;

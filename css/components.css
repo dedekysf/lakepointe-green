@@ -142,3 +142,57 @@ header > div [data-hdr-cta], header > div a[href="/contact/"].min-h-\[42px\] { t
 .footer-phone span { position: relative; }
 .footer-phone span::after { content: ""; position: absolute; left: 0; bottom: -3px; width: 0; height: 1px; background: currentColor; transition: width 250ms ease; }
 .footer-phone:hover span::after, .footer-phone:focus-visible span::after { width: 100%; }
+
+/* TABS (floor plans, site plans, contact, gallery filters): the underline draws in from the centre and the label colour fades, on hover and on click.
+   The old instant border-colour swap is replaced by an ::after line, so selecting a tab animates instead of jumping. */
+[role="tab"], #gallery [role="group"] > button { --tab-line: 2px; position: relative; border-bottom-color: transparent !important; transition: color 0.3s var(--header-ease); }
+#gallery [role="group"] > button { --tab-line: 1px; }
+[role="tab"]::after, #gallery [role="group"] > button::after { content: ""; position: absolute; left: 0; right: 0; bottom: calc(var(--tab-line) * -1); height: var(--tab-line); background-color: rgb(var(--color-copper)); opacity: 0.45; transform: scaleX(0); transition: transform 0.35s var(--header-ease), opacity 0.3s var(--header-ease); pointer-events: none; }
+[role="tab"]:hover::after, #gallery [role="group"] > button:hover::after { transform: scaleX(1); }
+[role="tab"][aria-selected="true"]::after, #gallery [role="group"] > button[aria-pressed="true"]::after { transform: scaleX(1); opacity: 1; }
+/* panels and gallery grid fade in when switched (only after the first interaction, never on page load) */
+@keyframes lpg-tab-in { from { opacity: 0; } to { opacity: 1; } }
+.lpg-tab-used [role="tabpanel"]:not([hidden]) { animation: lpg-tab-in 0.3s var(--header-ease); }
+.lpg-fade { animation: lpg-tab-in 0.3s var(--header-ease); }
+@media (prefers-reduced-motion: reduce) { [role="tab"], [role="tab"]::after, #gallery [role="group"] > button, #gallery [role="group"] > button::after { transition: none; } .lpg-tab-used [role="tabpanel"]:not([hidden]), .lpg-fade { animation: none; } }
+
+/* DRIVE-TIMES MAP (Find Your Home, js/map-places.js): the list rows are buttons that switch the map beside them. */
+.lpg-place { transition: background-color 0.3s var(--header-ease), box-shadow 0.3s var(--header-ease); }
+.lpg-place:hover { background-color: rgb(var(--color-cream)); }
+.lpg-place.is-active { background-color: rgb(var(--color-cream)); box-shadow: inset 2px 0 0 rgb(var(--color-copper)); }
+.lpg-place dd { transition: color 0.3s var(--header-ease); }
+.lpg-place.is-active dd { color: rgb(var(--color-copper)); }
+.lpg-place-btn { cursor: pointer; transition: color 0.3s var(--header-ease); }
+.lpg-place.is-active .lpg-place-btn { font-weight: 600; }
+.lpg-place-btn:focus-visible { outline: none; }
+.lpg-place:has(.lpg-place-btn:focus-visible) { outline: 2px solid rgb(var(--color-lovett-blue)); outline-offset: -2px; }
+.lpg-map iframe { transition: opacity 0.35s var(--header-ease); }
+.lpg-map.is-loading iframe { opacity: 0.35; }
+.lpg-map-cap { position: absolute; left: 12px; top: 12px; z-index: 2; display: none; max-width: calc(100% - 24px); align-items: center; gap: 12px; padding: 8px 12px; background: rgb(var(--color-stone) / 0.96); box-shadow: 0 2px 12px rgb(var(--color-ink) / 0.18); font-size: 13px; color: rgb(var(--color-ink)); }
+.lpg-map-cap.is-on { display: flex; }
+.lpg-map-cap-reset { flex-shrink: 0; font-size: 12px; font-weight: 500; color: rgb(var(--color-lovett-blue)); text-decoration: underline; text-underline-offset: 0.2em; }
+.lpg-map-cap-reset:hover { color: rgb(var(--color-ink)); }
+@media (prefers-reduced-motion: reduce) { .lpg-place, .lpg-place dd, .lpg-place-btn, .lpg-map iframe { transition: none; } }
+
+/* NAV-STYLE LINKS (sales cards on Find Your Home): ink at 70% like the header menu, full ink on hover, and the text gets the same
+   copper underline that draws in from the centre. Icons and arrows stay copper. */
+.lpg-navlink { color: rgb(var(--color-ink) / 0.7); transition: color 0.3s var(--header-ease); }
+.lpg-navlink:hover, .lpg-navlink:focus-visible { color: rgb(var(--color-ink)); }
+.lpg-navlink-t { position: relative; }
+.lpg-navlink-t::after { content: ""; position: absolute; left: 0; right: 0; bottom: -3px; height: 1px; background-color: rgb(var(--color-copper)); transform: scaleX(0); transition: transform 0.3s var(--header-ease); }
+.lpg-navlink:hover .lpg-navlink-t::after, .lpg-navlink:focus-visible .lpg-navlink-t::after { transform: scaleX(1); }
+@media (prefers-reduced-motion: reduce) { .lpg-navlink, .lpg-navlink-t::after { transition: none; } }
+
+/* FORM CONTROLS (all forms): inputs, selects and textareas fade their border on hover and focus and get a soft blue halo, instead of the
+   hard white-gap focus ring used for links and buttons. An invalid field keeps its red border and gets a red halo. */
+input:not([type="radio"]):not([type="checkbox"]), select, textarea { transition: border-color 0.25s var(--header-ease), box-shadow 0.25s var(--header-ease); }
+input:not([type="radio"]):not([type="checkbox"]):focus, input:not([type="radio"]):not([type="checkbox"]):focus-visible,
+select:focus, select:focus-visible, textarea:focus, textarea:focus-visible {
+  outline: none;
+  border-color: rgb(var(--color-lovett-blue));
+  box-shadow: 0 0 0 3px rgb(var(--color-lovett-blue) / 0.18);
+}
+input[aria-invalid="true"]:not([type="radio"]):not([type="checkbox"]):focus, input[aria-invalid="true"]:not([type="radio"]):not([type="checkbox"]):focus-visible { box-shadow: 0 0 0 3px rgb(180 35 24 / 0.18); }
+/* radios and chips keep the standard ring, but sit closer to the control */
+input[type="radio"]:focus-visible, input[type="checkbox"]:focus-visible { outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { input, select, textarea { transition: none; } }
