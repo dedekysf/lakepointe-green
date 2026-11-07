@@ -213,3 +213,12 @@ input[type="radio"]:focus-visible, input[type="checkbox"]:focus-visible { outlin
 .lpg-more-menu button:hover { background-color: rgb(var(--color-cream)); color: rgb(var(--color-ink)); }
 .lpg-more-menu button[aria-pressed="true"] { color: rgb(var(--color-ink)); box-shadow: inset 2px 0 0 rgb(var(--color-copper)); }
 @media (prefers-reduced-motion: reduce) { .lpg-more-btn, .lpg-more-btn svg, .lpg-more-btn::after, .lpg-more-menu button { transition: none; } .lpg-more-menu:not([hidden]) { animation: none; } }
+
+/* GALLERY TABS below 1280px: the tab row fills the container (tabs share the width equally, hairline under the row, the active tab's line spans its cell).
+   The "More" menu opens from the right edge so it never leaves the screen. From 1280px the tabs are left-aligned text again. */
+@media (max-width: 1279px) {
+  .lpg-gal-tabs { width: 100%; flex-wrap: nowrap; border-bottom: 1px solid rgb(var(--color-line)); }
+  .lpg-gal-tabs > button:not(.lpg-gal-extra), .lpg-gal-tabs > .lpg-more { flex: 1 1 0; min-width: 0; justify-content: center; text-align: center; }
+  .lpg-gal-tabs .lpg-more-btn { width: 100%; justify-content: center; }
+  .lpg-gal-tabs .lpg-more-menu { left: auto; right: 0; }
+}
