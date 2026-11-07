@@ -88,7 +88,7 @@ LPG.GALLERY = [
   },
   {
     "path": "/images/photos/gallery-family-room.webp",
-    "alt": "Family room with tall glass doors and transoms, a fireplace and white oak floors in a Lovett home",
+    "alt": "Family room with tall glass doors and transoms, a fireplace and white oak floors in a Lovett Homes residence",
     "category": "Interior"
   },
   {

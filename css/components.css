@@ -47,11 +47,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .framed { position: relative; }
 .framed::before { content: ""; pointer-events: none; position: absolute; inset: 24px -24px -24px 24px; border: 1px solid rgb(var(--color-copper) / .45); }
 @media (max-width: 767px) { .framed::before { inset: 12px -12px -12px 12px; } }
+/* same frame in light copper, for photos on the navy section */
+.framed-lt::before { border-color: rgb(var(--color-copper-lt) / .5); }
 
 /* Big serif number on the "pillars" cards (data-n) */
 .pillar-num::before { content: attr(data-n); }
 
-/* "Coming soon." tooltip on the disabled social buttons in the footer */
+/* "Coming soon." tooltip on disabled buttons (Download Broker Packet on Find Your Home) */
 .soon-tip { display: none; position: absolute; bottom: calc(100% + 8px); left: 50%; translate: -50% 0; z-index: 30; padding: 6px 10px; border-radius: 2px; background: rgb(var(--color-ink)); color: #fff; font-size: 12px; font-weight: 500; letter-spacing: 0; white-space: nowrap; pointer-events: none; }
 .soon:hover .soon-tip, .soon:focus-within .soon-tip { display: block; }
 
@@ -135,3 +137,8 @@ header > div a[href^="tel:"]::after { content: ""; position: absolute; left: 0; 
 header > div a[href^="tel:"]:hover::after { transform: scaleX(1); }
 .lpg-hdr:not(.is-solid) > div a[href^="tel:"]::after { background-color: rgb(var(--color-copper-lt)); }
 header > div [data-hdr-cta], header > div a[href="/contact/"].min-h-\[42px\] { transition: color 0.3s var(--header-ease), background-color 0.3s var(--header-ease), border-color 0.3s var(--header-ease); }
+
+/* FOOTER SALES CONTACTS: the phone number uses the same underline as the footer menu links (.footer-link): a 1px line in the text colour that grows from the left in 250ms. It sits under the number only, not the icon. */
+.footer-phone span { position: relative; }
+.footer-phone span::after { content: ""; position: absolute; left: 0; bottom: -3px; width: 0; height: 1px; background: currentColor; transition: width 250ms ease; }
+.footer-phone:hover span::after, .footer-phone:focus-visible span::after { width: 100%; }

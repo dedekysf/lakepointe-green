@@ -56,6 +56,7 @@ robots.txt  sitemap.xml
 
 - Smooth scroll: Lenis (CDN) in `js/smooth-scroll.js`, same settings as Intown. Use `LPG.scrollToEl(el)` for programmatic scrolling (header offset 72px, falls back to a plain jump for reduced motion).
 - Section reveal: `js/scroll-reveal.js` fades/raises each section's blocks in as it enters the viewport (text rises, photos fade, grids stagger). Opt out with `data-reveal-skip`; force targets with `data-reveal` (+ `data-reveal-delay`). Hero carousels are skipped. Distance/duration/stagger are tokens in `css/tokens.css`.
+- Title and description in two-column sections (text left, photo or form right) have no max-width: both fill the full text column, so they share one left and right edge. Single-column and centred blocks keep their own max-widths.
 - Footer social icons: 18px brand glyphs in `h-size-sm w-size-sm` circles (Intown style); they are disabled with a "Coming soon." tooltip (`.soon`) until real profile URLs exist.
 
 - Forms (tour request / information request) validate client-side, then open the visitor's email app (`mailto:` to `LPG.SALES_EMAIL`
