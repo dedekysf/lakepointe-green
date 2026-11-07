@@ -196,3 +196,20 @@ input[aria-invalid="true"]:not([type="radio"]):not([type="checkbox"]):focus, inp
 /* radios and chips keep the standard ring, but sit closer to the control */
 input[type="radio"]:focus-visible, input[type="checkbox"]:focus-visible { outline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) { input, select, textarea { transition: none; } }
+
+/* GALLERY "MORE" MENU (js/gallery.js): below 1280px only the first two filters show; the rest sit in a dropdown. From 1280px all filters show. */
+.lpg-more { position: relative; display: none; }
+@media (max-width: 1279px) { .lpg-more { display: block; } .lpg-gal-extra { display: none !important; } }
+.lpg-more-btn { position: relative; display: inline-flex; min-height: 44px; align-items: center; gap: 6px; font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: rgb(var(--color-muted)); transition: color 0.3s var(--header-ease); }
+.lpg-more-btn:hover, .lpg-more-btn[aria-pressed="true"], .lpg-more-btn[aria-expanded="true"] { color: rgb(var(--color-ink)); }
+.lpg-more-btn svg { transition: transform 0.3s var(--header-ease); }
+.lpg-more-btn[aria-expanded="true"] svg { transform: rotate(180deg); }
+.lpg-more-btn::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background-color: rgb(var(--color-copper)); opacity: 0.45; transform: scaleX(0); transition: transform 0.35s var(--header-ease), opacity 0.3s var(--header-ease); pointer-events: none; }
+.lpg-more-btn:hover::after { transform: scaleX(1); }
+.lpg-more-btn[aria-pressed="true"]::after { transform: scaleX(1); opacity: 1; }
+.lpg-more-menu { position: absolute; left: 0; top: calc(100% + 6px); z-index: 20; min-width: 190px; padding: 4px; background: rgb(var(--color-white)); border: 1px solid rgb(var(--color-line)); box-shadow: 0 6px 20px rgb(var(--color-ink) / 0.14); }
+.lpg-more-menu:not([hidden]) { animation: lpg-tab-in 0.2s var(--header-ease); }
+.lpg-more-menu button { display: flex; width: 100%; min-height: 44px; align-items: center; padding: 0 14px; text-align: left; font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: rgb(var(--color-muted)); transition: color 0.25s var(--header-ease), background-color 0.25s var(--header-ease); }
+.lpg-more-menu button:hover { background-color: rgb(var(--color-cream)); color: rgb(var(--color-ink)); }
+.lpg-more-menu button[aria-pressed="true"] { color: rgb(var(--color-ink)); box-shadow: inset 2px 0 0 rgb(var(--color-copper)); }
+@media (prefers-reduced-motion: reduce) { .lpg-more-btn, .lpg-more-btn svg, .lpg-more-btn::after, .lpg-more-menu button { transition: none; } .lpg-more-menu:not([hidden]) { animation: none; } }
