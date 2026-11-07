@@ -87,8 +87,8 @@ LPG.GALLERY = [
     "category": "Interior"
   },
   {
-    "path": "/images/photos/gallery-piano-living.webp",
-    "alt": "Great room with arched transom windows, herringbone white oak floors, a grand piano and brass chandeliers",
+    "path": "/images/photos/gallery-family-room.webp",
+    "alt": "Family room with tall glass doors and transoms, a fireplace and white oak floors in a Lovett home",
     "category": "Interior"
   },
   {

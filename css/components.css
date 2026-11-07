@@ -111,7 +111,7 @@ html.lenis, html.lenis body { height: auto; }
 .lpg-hdr.is-solid a[href^="tel:"] { color: rgb(var(--color-ink)); }
 .lpg-hdr.is-solid a[href^="tel:"] svg { color: rgb(var(--color-copper)); }
 .lpg-hdr.is-solid [data-hdr-cta] { border-color: rgb(var(--color-lovett)); background-color: rgb(var(--color-lovett)); }
-.lpg-hdr.is-solid [data-hdr-cta]:hover { border-color: rgb(var(--color-lovett-blue)); background-color: rgb(var(--color-lovett-blue)); }
+.lpg-hdr.is-solid [data-hdr-cta]:hover { border-color: rgb(var(--color-lovett-blue)); background-color: rgb(var(--color-lovett-blue)); color: rgb(var(--color-white)); }
 .lpg-hdr.is-solid button[aria-controls="mobile-nav"] { color: rgb(var(--color-ink)); }
 @media (prefers-reduced-motion: reduce) { .lpg-hdr, .lpg-hdr * { transition: none !important; } }
 
@@ -120,3 +120,18 @@ html.lenis, html.lenis body { height: auto; }
 .lpg-tabs-scroll { overflow-x: auto; overflow-y: hidden; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
 .lpg-tabs-scroll::-webkit-scrollbar { display: none; }
 .lpg-hdr:not(.lpg-hdr-ready), .lpg-hdr:not(.lpg-hdr-ready) * { transition: none !important; }
+
+/* Every mention of Lovett / Lovett Homes links to lovetthomes.com. Keeps the surrounding text style; a light underline
+   shows it is a link and turns solid on hover. */
+.lpg-lovett-link { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; text-decoration-color: color-mix(in srgb, currentColor 35%, transparent); transition: text-decoration-color 0.2s ease; }
+.lpg-lovett-link:hover { text-decoration-color: currentColor; }
+
+/* HEADER HOVERS (every page): menu links and the phone number fade their colour and draw the underline smoothly.
+   The underline grows from the centre; the phone number gets the same line as the menu links. */
+header nav[aria-label="Primary"] a { transition: color 0.3s var(--header-ease); }
+header nav[aria-label="Primary"] a::after { transition: transform 0.3s var(--header-ease), background-color var(--header-duration) var(--header-ease); }
+header > div a[href^="tel:"] { position: relative; transition: color 0.3s var(--header-ease); }
+header > div a[href^="tel:"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px; background-color: rgb(var(--color-copper)); transform: scaleX(0); transition: transform 0.3s var(--header-ease), background-color var(--header-duration) var(--header-ease); }
+header > div a[href^="tel:"]:hover::after { transform: scaleX(1); }
+.lpg-hdr:not(.is-solid) > div a[href^="tel:"]::after { background-color: rgb(var(--color-copper-lt)); }
+header > div [data-hdr-cta], header > div a[href="/contact/"].min-h-\[42px\] { transition: color 0.3s var(--header-ease), background-color 0.3s var(--header-ease), border-color 0.3s var(--header-ease); }

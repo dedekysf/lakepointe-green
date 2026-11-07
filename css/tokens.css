@@ -14,6 +14,7 @@
   --color-stone: 251 250 246;       /* #FBFAF6 page / header background */
   --color-cream: 245 241 232;       /* #F5F1E8 alternate section background */
   --color-line: 226 221 211;        /* #E2DDD3 hairlines, borders */
+  --color-white: 255 255 255;       /* text on navy buttons */
 
   /* Hero photo scrim (the dark layer over the carousel photos): RGB + strength. Phones get a darker one. */
   --color-scrim: 2 14 28;
